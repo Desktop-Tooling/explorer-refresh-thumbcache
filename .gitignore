@@ -1,0 +1,29 @@
+# Build and publish
+bin/
+obj/
+publish/
+dist/
+*.user
+*.suo
+*.cache
+.vs/
+*.rsuser
+
+# Inno Setup
+installer/*.exe
+
+# IDE / OS
+.idea/
+*.swp
+*.swo
+Thumbs.db
+.DS_Store
+
+# NuGet
+packages/
+*.nupkg
+*.snupkg
+
+# Logs
+*.log
+*.tmp

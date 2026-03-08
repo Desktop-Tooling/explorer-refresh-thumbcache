@@ -1,0 +1,51 @@
+= Refresh Thumbcache
+
+A Windows 11 File Explorer context menu entry that refreshes the thumbnail cache for the current folder (or the whole cache when per-folder is not supported).
+
+== Features
+
+* **Context menu**: Right-click a folder or inside a folder → "Refresh thumbnail cache".
+* **Primary menu**: Registered with `Position=Top` so it can appear in the new Windows 11 primary right-click menu where supported; otherwise under "Show more options".
+* **Scope**: Clears the central thumbnail cache (`thumbcache_*.db`, `iconcache_*.db`) and, when a folder is selected, the legacy `thumbs.db` in that folder. Windows does not support per-folder invalidation of the central cache, so a full cache clear is performed.
+* **Explorer restart**: Restarts Explorer so thumbnails are regenerated on next browse.
+
+== Requirements
+
+* Windows 10/11 (x64)
+* .NET 8 runtime (or use the self-contained installer)
+
+== Build
+
+[source,powershell]
+----
+dotnet publish src/RefreshThumbcache/RefreshThumbcache.csproj -c Release
+# Output: src/RefreshThumbcache/bin/Release/net8.0/win-x64/publish/RefreshThumbcache.exe
+----
+
+== Install (per-user, no admin)
+
+**Option A — PowerShell (no Inno Setup):**
+
+[source,powershell]
+----
+.\installer\Install.ps1
+# Or with explicit exe path:
+.\installer\Install.ps1 -ExePath ".\src\RefreshThumbcache\bin\Release\net8.0\win-x64\publish\RefreshThumbcache.exe"
+----
+
+**Option B — Inno Setup (single .exe installer):**
+
+1. Build the app (see above).
+2. Open `installer\setup.iss` in Inno Setup Compiler and build, or run: `iscc installer\setup.iss`.
+3. Run the generated setup from `dist\`.
+
+Install location: `%APPDATA%\AMDphreak\RefreshThumbcache\`.
+
+== Uninstall
+
+* Run `installer\Uninstall.ps1`, or
+* Use Windows Settings → Apps if you installed via the Inno Setup installer.
+
+== License
+
+MIT.
