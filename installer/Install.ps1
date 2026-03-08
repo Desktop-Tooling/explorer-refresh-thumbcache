@@ -1,6 +1,6 @@
 # Install Refresh Thumbcache context menu (per-user).
-# Run from repo root after: dotnet publish src/RefreshThumbcache/RefreshThumbcache.csproj -c Release
-# Or run from installer\ after copying RefreshThumbcache.exe to installer\ or setting $ExePath.
+# Run from repo root after: dub build --compiler=ldc2 -c release --build=release
+# Or: dub build -c application (then exe is at repo root). Or set $ExePath.
 
 param(
     [string]$ExePath = $null
@@ -12,16 +12,17 @@ $exeName = 'RefreshThumbcache.exe'
 
 if (-not $ExePath) {
     $scriptRoot = Split-Path -Parent $MyInvocation.MyCommand.Path
-    $defaultPublish = Join-Path (Split-Path -Parent $scriptRoot) "src\RefreshThumbcache\bin\Release\net8.0\win-x64\publish\$exeName"
-    if (Test-Path $defaultPublish) {
-        $ExePath = $defaultPublish
+    $repoRoot = Split-Path -Parent $scriptRoot
+    $defaultExe = Join-Path $repoRoot $exeName
+    if (Test-Path $defaultExe) {
+        $ExePath = $defaultExe
     } else {
         $ExePath = Join-Path $scriptRoot $exeName
     }
 }
 
 if (-not (Test-Path $ExePath)) {
-    Write-Error "RefreshThumbcache.exe not found. Build first: dotnet publish src/RefreshThumbcache/RefreshThumbcache.csproj -c Release"
+    Write-Error "RefreshThumbcache.exe not found. Build first: dub build --compiler=ldc2 -c release --build=release (or dub build -c application)"
 }
 
 $installDir = Join-Path $env:APPDATA "AMDphreak\RefreshThumbcache"

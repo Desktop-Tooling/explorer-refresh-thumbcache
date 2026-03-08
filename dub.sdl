@@ -1,0 +1,29 @@
+name "refresh-thumbcache"
+description "Windows Explorer context menu: refresh thumbnail cache for current folder or all."
+authors "AMDphreak"
+license "MIT"
+targetType "executable"
+targetPath "."
+targetName "RefreshThumbcache"
+
+# Prefer LDC (LLVM); build with: dub build --compiler=ldc2 -c release --build=release
+buildRequirements "allowWarnings"
+
+# Configurations
+configuration "application" {
+	targetType "executable"
+	mainSourceFile "source/refresh_thumbcache/main.d"
+}
+
+configuration "release" {
+	targetType "executable"
+	mainSourceFile "source/refresh_thumbcache/main.d"
+	# LDC: -nogc for smaller binary (dub build --compiler=ldc2 -c release --build=release)
+	dflags "-nogc" platform="windows"
+}
+
+configuration "unittest" {
+	targetType "executable"
+	mainSourceFile "source/refresh_thumbcache/main.d"
+	buildOptions "unittests"
+}

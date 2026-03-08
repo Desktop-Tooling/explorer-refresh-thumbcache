@@ -1,6 +1,6 @@
 = Refresh Thumbcache
 
-A Windows 11 File Explorer context menu entry that refreshes the thumbnail cache for the current folder (or the whole cache when per-folder is not supported).
+A Windows 11 File Explorer context menu entry that refreshes the thumbnail cache for the current folder (or the whole cache when per-folder is not supported). Implemented in D (Dlang) with LDC, multithreading, and `-nogc`.
 
 == Features
 
@@ -12,14 +12,23 @@ A Windows 11 File Explorer context menu entry that refreshes the thumbnail cache
 == Requirements
 
 * Windows 10/11 (x64)
-* .NET 8 runtime (or use the self-contained installer)
+* LDC (LLVM D Compiler) recommended; DMD works for the `application` configuration.
 
 == Build
 
+Using LDC (release, `-nogc`):
+
 [source,powershell]
 ----
-dotnet publish src/RefreshThumbcache/RefreshThumbcache.csproj -c Release
-# Output: src/RefreshThumbcache/bin/Release/net8.0/win-x64/publish/RefreshThumbcache.exe
+dub build --compiler=ldc2 -c release --build=release
+# Output: RefreshThumbcache.exe at repo root
+----
+
+Using DMD (debug/application):
+
+[source,powershell]
+----
+dub build -c application
 ----
 
 == Install (per-user, no admin)
@@ -30,7 +39,7 @@ dotnet publish src/RefreshThumbcache/RefreshThumbcache.csproj -c Release
 ----
 .\installer\Install.ps1
 # Or with explicit exe path:
-.\installer\Install.ps1 -ExePath ".\src\RefreshThumbcache\bin\Release\net8.0\win-x64\publish\RefreshThumbcache.exe"
+.\installer\Install.ps1 -ExePath ".\RefreshThumbcache.exe"
 ----
 
 **Option B — Inno Setup (single .exe installer):**
@@ -45,6 +54,18 @@ Install location: `%APPDATA%\AMDphreak\RefreshThumbcache\`.
 
 * Run `installer\Uninstall.ps1`, or
 * Use Windows Settings → Apps if you installed via the Inno Setup installer.
+
+== Pushing and GitHub workflow scope
+
+If `gh repo create` or `git push` fails with "refusing to allow an OAuth App to create or update workflow ... without `workflow` scope", the GitHub CLI token is missing the workflow scope. Fix it by re-authorizing:
+
+[source,powershell]
+----
+gh auth refresh -s workflow
+git push -u origin main
+----
+
+Then push again; workflows will run and the installer job will produce the Inno Setup exe.
 
 == License
 

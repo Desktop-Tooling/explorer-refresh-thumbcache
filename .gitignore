@@ -1,3 +1,17 @@
+# D / DUB
+.dub/
+__dummy.html
+*.exe
+*.obj
+*.o
+*.a
+*.so
+*.dll
+*.lib
+*.lst
+*.exp
+*.pdb
+
 # Build and publish
 bin/
 obj/
@@ -18,11 +32,6 @@ installer/*.exe
 *.swo
 Thumbs.db
 .DS_Store
-
-# NuGet
-packages/
-*.nupkg
-*.snupkg
 
 # Logs
 *.log

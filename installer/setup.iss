@@ -26,7 +26,7 @@ ArchitecturesInstallIn64BitMode=x64
 Name: "en"; MessagesFile: "compiler:Default.isl"
 
 [Files]
-Source: "..\src\RefreshThumbcache\bin\Release\net8.0\win-x64\publish\{#MyAppExeName}"; DestDir: "{app}"; Flags: ignoreversion
+Source: "..\{#MyAppExeName}"; DestDir: "{app}"; Flags: ignoreversion
 
 [Registry]
 ; Right-click on a folder: "Refresh thumbnail cache"

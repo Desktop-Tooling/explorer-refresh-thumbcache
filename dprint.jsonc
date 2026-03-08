@@ -12,5 +12,5 @@
     "lineWidth": 100
   },
   "includes": ["**/*.json", "**/*.jsonc", "**/*.md", "**/*.adoc"],
-  "excludes": ["node_modules", "bin", "obj", "dist", "publish"]
+  "excludes": ["node_modules", "bin", "obj", "dist", "publish", ".dub"]
 }

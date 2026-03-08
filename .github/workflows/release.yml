@@ -14,13 +14,13 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Setup .NET
-        uses: actions/setup-dotnet@v4
+      - name: Setup D (LDC)
+        uses: dlang-community/setup-dlang@v2
         with:
-          dotnet-version: "8.0.x"
+          compiler: ldc
 
-      - name: Publish
-        run: dotnet publish src/RefreshThumbcache/RefreshThumbcache.csproj -c Release -o src/RefreshThumbcache/bin/Release/net8.0/win-x64/publish
+      - name: Build
+        run: dub build --compiler=ldc2 -c release --build=release
 
       - name: Install Inno Setup
         run: choco install innosetup -y; $env:Path = [System.Environment]::GetEnvironmentVariable('Path','Machine') + ';' + [System.Environment]::GetEnvironmentVariable('Path','User')
@@ -35,7 +35,7 @@ jobs:
         with:
           files: |
             dist/*.exe
-            src/RefreshThumbcache/bin/Release/net8.0/win-x64/publish/RefreshThumbcache.exe
+            RefreshThumbcache.exe
           generate_release_notes: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

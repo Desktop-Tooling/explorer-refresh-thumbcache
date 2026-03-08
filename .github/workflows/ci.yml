@@ -12,25 +12,19 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Setup .NET
-        uses: actions/setup-dotnet@v4
+      - name: Setup D (LDC)
+        uses: dlang-community/setup-dlang@v2
         with:
-          dotnet-version: "8.0.x"
+          compiler: ldc
 
-      - name: Restore
-        run: dotnet restore
+      - name: Build (release, nogc)
+        run: dub build --compiler=ldc2 -c release --build=release
 
-      - name: Build
-        run: dotnet build -c Release --no-restore
-
-      - name: Publish
-        run: dotnet publish src/RefreshThumbcache/RefreshThumbcache.csproj -c Release -o src/RefreshThumbcache/bin/Release/net8.0/win-x64/publish --no-build
-
-      - name: Upload publish artifact
+      - name: Upload exe artifact
         uses: actions/upload-artifact@v4
         with:
-          name: RefreshThumbcache-publish
-          path: src/RefreshThumbcache/bin/Release/net8.0/win-x64/publish/
+          name: RefreshThumbcache-exe
+          path: RefreshThumbcache.exe
 
   installer:
     needs: build
@@ -38,13 +32,13 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Setup .NET
-        uses: actions/setup-dotnet@v4
+      - name: Setup D (LDC)
+        uses: dlang-community/setup-dlang@v2
         with:
-          dotnet-version: "8.0.x"
+          compiler: ldc
 
-      - name: Restore and Publish
-        run: dotnet publish src/RefreshThumbcache/RefreshThumbcache.csproj -c Release -o src/RefreshThumbcache/bin/Release/net8.0/win-x64/publish
+      - name: Build
+        run: dub build --compiler=ldc2 -c release --build=release
 
       - name: Install Inno Setup
         run: choco install innosetup -y; $env:Path = [System.Environment]::GetEnvironmentVariable('Path','Machine') + ';' + [System.Environment]::GetEnvironmentVariable('Path','User')
@@ -53,7 +47,6 @@ jobs:
       - name: Build installer
         run: iscc installer/setup.iss
         shell: pwsh
-        working-directory: ${{ github.workspace }}
 
       - name: Upload installer artifact
         uses: actions/upload-artifact@v4
