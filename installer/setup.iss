@@ -41,14 +41,3 @@ Root: HKCU; Subkey: "Software\Classes\Directory\Background\shell\RefreshThumbcac
 
 [UninstallDelete]
 Type: filesandordirs; Name: "{app}"
-
-[Code]
-function InitializeSetup(): Boolean;
-begin
-  Result := True;
-  if not FileExists(ExpandConstant('..\src\RefreshThumbcache\bin\Release\net8.0\win-x64\publish\{#MyAppExeName}')) then
-  begin
-    MsgBox('Run the build first: dotnet publish -c Release', mbError, MB_OK);
-    Result := False;
-  end;
-end;
