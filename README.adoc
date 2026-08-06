@@ -1,4 +1,30 @@
+ifndef::env-github[:icons: font]
+:toc: preamble
+:toclevels: 2
+:sectanchors:
+
+ifndef::env-github[]
+image:https://img.shields.io/github/contributors/AMDphreak/explorer-refresh-thumbcache.svg?style=for-the-badge[Contributors,link=https://github.com/AMDphreak/explorer-refresh-thumbcache/graphs/contributors]
+image:https://img.shields.io/github/forks/AMDphreak/explorer-refresh-thumbcache.svg?style=for-the-badge[Forks,link=https://github.com/AMDphreak/explorer-refresh-thumbcache/network/members]
+image:https://img.shields.io/github/stars/AMDphreak/explorer-refresh-thumbcache.svg?style=for-the-badge[Stars,link=https://github.com/AMDphreak/explorer-refresh-thumbcache/stargazers]
+image:https://img.shields.io/github/issues/AMDphreak/explorer-refresh-thumbcache.svg?style=for-the-badge[Issues,link=https://github.com/AMDphreak/explorer-refresh-thumbcache/issues]
+endif::[]
+
+ifdef::env-github[]
+image:https://img.shields.io/github/contributors/AMDphreak/explorer-refresh-thumbcache.svg?style=for-the-badge[Contributors]
+image:https://img.shields.io/github/forks/AMDphreak/explorer-refresh-thumbcache.svg?style=for-the-badge[Forks]
+image:https://img.shields.io/github/stars/AMDphreak/explorer-refresh-thumbcache.svg?style=for-the-badge[Stars]
+image:https://img.shields.io/github/issues/AMDphreak/explorer-refresh-thumbcache.svg?style=for-the-badge[Issues]
+endif::[]
+
 = Refresh Thumbcache
+
+Windows 11 Explorer context menu: refresh thumbnail cache (D/LDC, -nogc).
+
+link:https://github.com/AMDphreak/explorer-refresh-thumbcache/issues[Report Bug] ·
+link:https://github.com/AMDphreak/explorer-refresh-thumbcache/issues[Request Feature]
+
+== About The Project
 
 A Windows 11 File Explorer context menu entry that refreshes the thumbnail cache for the current folder (or the whole cache when per-folder is not supported). Implemented in D (Dlang) with LDC, multithreading, and `-nogc`.
 
@@ -9,12 +35,14 @@ A Windows 11 File Explorer context menu entry that refreshes the thumbnail cache
 * **Scope**: Clears the central thumbnail cache (`thumbcache_*.db`, `iconcache_*.db`) and, when a folder is selected, the legacy `thumbs.db` in that folder. Windows does not support per-folder invalidation of the central cache, so a full cache clear is performed.
 * **Explorer restart**: Restarts Explorer so thumbnails are regenerated on next browse.
 
-== Requirements
+== Installation
+
+=== Requirements
 
 * Windows 10/11 (x64)
 * LDC (LLVM D Compiler) recommended; DMD works for the `application` configuration.
 
-== Build
+=== Build
 
 Using LDC (release, `-nogc`):
 
@@ -31,7 +59,7 @@ Using DMD (debug/application):
 dub build -c application
 ----
 
-== Install (per-user, no admin)
+=== Install (per-user, no admin)
 
 **Option A — PowerShell (no Inno Setup):**
 
@@ -50,12 +78,14 @@ dub build -c application
 
 Install location: `%APPDATA%\AMDphreak\RefreshThumbcache\`.
 
-== Uninstall
+== Usage
+
+=== Uninstall
 
 * Run `installer\Uninstall.ps1`, or
 * Use Windows Settings → Apps if you installed via the Inno Setup installer.
 
-== Pushing and GitHub workflow scope
+=== Pushing and GitHub workflow scope
 
 If `gh repo create` or `git push` fails with "refusing to allow an OAuth App to create or update workflow ... without `workflow` scope", the GitHub CLI token is missing the workflow scope. Fix it by re-authorizing:
 
@@ -67,6 +97,9 @@ git push -u origin main
 
 Then push again; workflows will run and the installer job will produce the Inno Setup exe.
 
-== License
+== Contact
 
-MIT.
+Ryan Johnson — link:https://twitter.com/amdphreak[@amdphreak]
+
+* Project: https://github.com/AMDphreak/explorer-refresh-thumbcache
+* Site: https://ryanjohnson.dev
