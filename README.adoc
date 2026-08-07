@@ -3,19 +3,11 @@ ifndef::env-github[:icons: font]
 :toclevels: 2
 :sectanchors:
 
-ifndef::env-github[]
+[[readme-top]]
 image:https://img.shields.io/github/contributors/AMDphreak/explorer-refresh-thumbcache.svg?style=for-the-badge[Contributors,link=https://github.com/AMDphreak/explorer-refresh-thumbcache/graphs/contributors]
 image:https://img.shields.io/github/forks/AMDphreak/explorer-refresh-thumbcache.svg?style=for-the-badge[Forks,link=https://github.com/AMDphreak/explorer-refresh-thumbcache/network/members]
 image:https://img.shields.io/github/stars/AMDphreak/explorer-refresh-thumbcache.svg?style=for-the-badge[Stars,link=https://github.com/AMDphreak/explorer-refresh-thumbcache/stargazers]
 image:https://img.shields.io/github/issues/AMDphreak/explorer-refresh-thumbcache.svg?style=for-the-badge[Issues,link=https://github.com/AMDphreak/explorer-refresh-thumbcache/issues]
-endif::[]
-
-ifdef::env-github[]
-image:https://img.shields.io/github/contributors/AMDphreak/explorer-refresh-thumbcache.svg?style=for-the-badge[Contributors]
-image:https://img.shields.io/github/forks/AMDphreak/explorer-refresh-thumbcache.svg?style=for-the-badge[Forks]
-image:https://img.shields.io/github/stars/AMDphreak/explorer-refresh-thumbcache.svg?style=for-the-badge[Stars]
-image:https://img.shields.io/github/issues/AMDphreak/explorer-refresh-thumbcache.svg?style=for-the-badge[Issues]
-endif::[]
 
 = Refresh Thumbcache
 
@@ -28,12 +20,16 @@ link:https://github.com/AMDphreak/explorer-refresh-thumbcache/issues[Request Fea
 
 A Windows 11 File Explorer context menu entry that refreshes the thumbnail cache for the current folder (or the whole cache when per-folder is not supported). Implemented in D (Dlang) with LDC, multithreading, and `-nogc`.
 
+link:#readme-top[back to top]
+
 == Features
 
 * **Context menu**: Right-click a folder or inside a folder → "Refresh thumbnail cache".
 * **Primary menu**: Registered with `Position=Top` so it can appear in the new Windows 11 primary right-click menu where supported; otherwise under "Show more options".
 * **Scope**: Clears the central thumbnail cache (`thumbcache_*.db`, `iconcache_*.db`) and, when a folder is selected, the legacy `thumbs.db` in that folder. Windows does not support per-folder invalidation of the central cache, so a full cache clear is performed.
 * **Explorer restart**: Restarts Explorer so thumbnails are regenerated on next browse.
+
+link:#readme-top[back to top]
 
 == Installation
 
@@ -78,6 +74,8 @@ dub build -c application
 
 Install location: `%APPDATA%\AMDphreak\RefreshThumbcache\`.
 
+link:#readme-top[back to top]
+
 == Usage
 
 === Uninstall
@@ -97,9 +95,13 @@ git push -u origin main
 
 Then push again; workflows will run and the installer job will produce the Inno Setup exe.
 
+link:#readme-top[back to top]
+
 == Contact
 
 Ryan Johnson — link:https://twitter.com/amdphreak[@amdphreak]
 
 * Project: https://github.com/AMDphreak/explorer-refresh-thumbcache
 * Site: https://ryanjohnson.dev
+
+link:#readme-top[back to top]
