@@ -1,4 +1,5 @@
 name "refresh-thumbcache"
+version "0.1.0"
 description "Windows Explorer context menu: refresh thumbnail cache for current folder or all."
 authors "AMDphreak"
 license "MIT"

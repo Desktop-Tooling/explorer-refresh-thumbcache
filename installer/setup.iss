@@ -9,7 +9,7 @@
 AppId={{B7C8E9A1-2D3F-4E5A-8B6C-9D0E1F2A3B4C}
 AppName={#MyAppName}
 AppPublisher={#MyAppPublisher}
-AppVersion=1.0.0
+AppVersion=0.1.0
 DefaultDirName={userappdata}\AMDphreak\RefreshThumbcache
 DefaultGroupName={#MyAppName}
 DisableProgramGroupPage=yes

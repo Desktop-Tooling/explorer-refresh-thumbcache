@@ -118,6 +118,12 @@ Then push again; workflows will run and the installer job will produce the Inno 
 
 link:#readme-top[back to top]
 
+== Changelog
+
+See link:CHANGELOG.md[CHANGELOG.md] for release history.
+
+link:#readme-top[back to top]
+
 == Contact
 
 Ryan Johnson — link:https://twitter.com/amdphreak[@amdphreak]
