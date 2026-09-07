@@ -1,0 +1,33 @@
+= Explorer Refresh Thumbcache
+:description: File Explorer context-menu command for clearing Windows thumbnail caches.
+:page-audience: Windows users who need File Explorer to regenerate stale thumbnails
+:page-usage-context: Product overview and installation entry point
+:page-orig-author: Ryan Johnson
+:page-last-author: Cursor agent on behalf of Ryan Johnson
+:page-last-edited: 2026-09-07
+
+ifndef::page-context-active[]
+[.page-context.page-context-lead]
+****
+Audience:: {page-audience}
+****
+endif::[]
+
+Explorer Refresh Thumbcache adds a context-menu command that clears Windows thumbnail and icon cache databases, removes a selected folder's legacy `thumbs.db` when present, and restarts Explorer so previews regenerate on the next browse.
+
+Windows does not provide a supported way to invalidate one folder inside the central thumbnail cache. The tool therefore clears the central cache even when it was invoked for a selected folder.
+
+== Install
+
+The repository provides a per-user PowerShell installer and an Inno Setup package. Build the D application with LDC for the release `-nogc` configuration, then run `installer/Install.ps1` or compile and run the Inno Setup installer.
+
+The command requests a top position in the Windows 11 context menu where supported; otherwise it remains available under "Show more options."
+
+ifndef::page-context-active[]
+[.page-context.page-context-footer]
+****
+Original author:: {page-orig-author}
+Latest contributor:: {page-last-author}
+Last updated:: {page-last-edited}
+****
+endif::[]

@@ -1,0 +1,4 @@
+name: explorer-refresh-thumbcache
+title: Explorer Refresh Thumbcache
+version: ~
+start_page: ROOT:index.adoc
